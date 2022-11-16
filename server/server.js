@@ -8,6 +8,9 @@ const port = process.env.PORT || 3001;
 const {postPhotos, getPhotos} = require('./database/controllers/photoStore.js')
 
 
+
+
+
 //for use in development
 app.use(cors());
 app.use(express.json());

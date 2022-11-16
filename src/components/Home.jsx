@@ -35,7 +35,6 @@ const Home = () => {
           .then(result => {
             setPosted(prev=> !prev);
           })
-
         }
       } else {
         console.log(error);
@@ -46,9 +45,13 @@ const Home = () => {
   return (
     <div>
       <CloudinaryContext cloudName="dvijvlkad">
-      <button className="upload-button" onClick={() => beginUpload()}>Upload Image</button>
-      <h1 className="title">Image Detective</h1>
-      <div className="image-grid">
+      <div className="title">
+        <span>Dimensions</span>
+        <button className="upload-button" onClick={() => beginUpload()}>Upload Images</button>
+      </div>
+
+
+      <div className="container">
       {images && images.map((item, i) => {
         console.log('THIS IS ITEM',item)
         return (<ImageView key={i} image={item}/>)

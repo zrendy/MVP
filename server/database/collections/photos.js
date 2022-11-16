@@ -4,8 +4,8 @@ const photoSchema = mongoose.Schema({
   url: String,
   thumbnail: String,
   labels: [String],
-  address: String
-
+  address: String,
+  alternate: String
 });
 const photos = mongoose.model('photo', photoSchema);
 
