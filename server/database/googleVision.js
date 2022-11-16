@@ -16,7 +16,6 @@ var labelImage = function (image_url) {
     labels.forEach(label => labelArr.push(label.description));
     return labelArr;
   })
-
 }
 
 var landmarkImage = function (image_url) {
