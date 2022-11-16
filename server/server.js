@@ -8,14 +8,11 @@ const port = process.env.PORT || 3001;
 const {postPhotos, getPhotos} = require('./database/controllers/photoStore.js')
 
 
-
-
-
 //for use in development
 app.use(cors());
 app.use(express.json());
-// const DIST_DIR = path.join(__dirname, '../public');
-// app.use(express.static(DIST_DIR));
+const DIST_DIR = path.join(__dirname, '../public');
+app.use(express.static(DIST_DIR));
 const mockResponse = {
   foo: 'bar',
   bar: 'f2o'

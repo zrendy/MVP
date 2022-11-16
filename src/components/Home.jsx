@@ -9,7 +9,7 @@ const Home = () => {
   const [images, setImages] = useState([]);
   const [posted, setPosted] = useState(false)
   useEffect(()=> {
-    axios.get('http://localhost:3001/photos')
+    axios.get('/photos')
     .then((result) => {
       setImages(result.data);
     })
@@ -31,7 +31,7 @@ const Home = () => {
             url: photos.info.url,
             thumbnail: photos.info.thumbnail_url
           }
-          axios.post('http://localhost:3001/photos', photoItem)
+          axios.post('/photos', photoItem)
           .then(result => {
             setPosted(prev=> !prev);
           })
@@ -49,6 +49,7 @@ const Home = () => {
         <span>Dimensions</span>
         <button className="upload-button" onClick={() => beginUpload()}>Upload Images</button>
       </div>
+      <p>Upload images and retrieve a physical address, then see what it would look like in an alternate universe!</p>
 
 
       <div className="container">
