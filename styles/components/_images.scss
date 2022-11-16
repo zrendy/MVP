@@ -1,0 +1,13 @@
+
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+  grid-auto-rows: 300px 300px;
+
+
+}
+img {
+  height: 100%;
+  width: 100%;
+}

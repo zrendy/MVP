@@ -2,19 +2,22 @@ import React, {useState, useEffect} from "react";
 import axios from 'axios';
 import { CloudinaryContext, Image } from "cloudinary-react";
 import { openUploadWidget } from "./CloudinaryService.js";
+import ImageView from './ImageView.jsx'
+import ImageData from '../mockdata.json'
 
 const Home = () => {
   const [images, setImages] = useState([]);
+  const [posted, setPosted] = useState(false)
   useEffect(()=> {
-    axios.get('http://localhost:3001/api')
+    axios.get('http://localhost:3001/photos')
     .then((result) => {
-      console.log(result)
-      console.log(images)
+      setImages(result.data);
     })
-  }, [])
+  }, [posted])
 
   //cloudinary upload handler
   const beginUpload = tag => {
+    console.log('This is the tag', tag)
     const uploadOptions = {
       cloudName: "dvijvlkad",
       tags: [tag],
@@ -29,9 +32,10 @@ const Home = () => {
             thumbnail: photos.info.thumbnail_url
           }
           axios.post('http://localhost:3001/photos', photoItem)
-          //add to database
-          console.log(images)
-          setImages([...images, photoItem.url])
+          .then(result => {
+            setPosted(prev=> !prev);
+          })
+
         }
       } else {
         console.log(error);
@@ -39,24 +43,19 @@ const Home = () => {
     })
   }
 
-
-
-
-
   return (
     <div>
       <CloudinaryContext cloudName="dvijvlkad">
-      <h1>Hello World</h1>
-      <section>{images.map(i => <Image
-              key={i}
-              publicId={i}
-              fetch-format="auto"
-              quality="auto"
-            />)}</section>
-      <button onClick={() => beginUpload()}>Upload Image</button>
+      <button className="upload-button" onClick={() => beginUpload()}>Upload Image</button>
+      <h1 className="title">Image Detective</h1>
+      <div className="image-grid">
+      {images && images.map((item, i) => {
+        console.log('THIS IS ITEM',item)
+        return (<ImageView key={i} image={item}/>)
+      })}
+      </div>
       </CloudinaryContext>
     </div>
-
   )
 }
 
