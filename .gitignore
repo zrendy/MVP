@@ -1,8 +1,11 @@
 .env
 node_modules
 server/images
-ex-delete-project-f7f53f0fe483.json
+public/bundle.js
 styles/components
 styles/styles.css.map
 styles/styles.scss
 dimensions.pem
+dimensions-project-370000-342c9db504d1.json
+styles/styles.css.map
+styles/styles.css
